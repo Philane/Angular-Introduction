@@ -30,6 +30,11 @@ import { StudentComponent } from './student/student.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { RedblackDirective } from './directives/redblack.directive';
+import { GridComponent } from './grids/grid/grid.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { HierarchyComponent } from './grids/hierarchy/hierarchy.component';
+
+
 
 
 
@@ -92,6 +97,18 @@ const routes:Routes=[
 
   }
   ,
+  {
+    path: 'grid',
+    component: GridComponent
+
+  }
+  ,
+  {
+    path: 'hierarchy',
+    component: HierarchyComponent
+
+  }
+  ,
   
   
   {
@@ -119,14 +136,16 @@ const routes:Routes=[
     StudentComponent,
     ParentComponent,
     ChildComponent,
-    RedblackDirective
+    RedblackDirective,
+    GridComponent,
+    HierarchyComponent
     
    
   ],
   imports: [
     BrowserModule,
     ScheduleModule,RecurrenceEditorModule,
-    DragDropModule,BrowserAnimationsModule,RoutesRoutingModule,FormsModule,
+    DragDropModule,BrowserAnimationsModule,RoutesRoutingModule,FormsModule,AgGridModule,
     RouterModule.forRoot(routes),MatTreeModule,MatIconModule,MatButtonModule
   ],
   providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService,AuthGuard],
