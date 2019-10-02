@@ -23,6 +23,7 @@
     "@angular/router": "~8.0.1",
     "@syncfusion/ej2-angular-schedule": "^17.2.49",
     "@syncfusion/ej2-material-theme": "^17.2.49",
+    "chart.js": "^2.8.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -47,5 +48,17 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Philane/Angular-Introduction.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Philane/Angular-Introduction/issues"
+  },
+  "homepage": "https://github.com/Philane/Angular-Introduction#readme"
 }

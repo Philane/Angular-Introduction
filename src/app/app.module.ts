@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule,Routes} from '@angular/router'
+import {RouterModule,Routes,CanActivate} from '@angular/router'
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTreeModule,MatIconModule,MatButtonModule} from '@angular/material'
+import {MatTreeModule,MatIconModule,MatButtonModule} from '@angular/material';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,23 +15,46 @@ import { ContactComponent } from './contact/contact.component';
 import {CalendarComponent} from './calendar/calendar/calendar.component';
 import { DragDropComponent } from './drag-drop/drag-drop/drag-drop.component';
 import { TreeViewComponent } from './trees/tree-view/tree-view.component';
+import { ChartsComponent } from './charts/charts/charts.component';
+import { LoginComponent } from './user/login/login.component';
+import { AccountComponent } from './user/account/account.component';
+import {NotificationsComponent} from './user/notifications/notifications.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import {AuthGuard} from './auth.guard';
+import {RoutesRoutingModule} from './routes/routes-routing.module'
 
 import {ScheduleModule,RecurrenceEditorModule,DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { DeleteComponent } from './user/delete/delete.component';
+import { TeacherComponent } from './teacher/teacher.component';
+import { StudentComponent } from './student/student.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
+import { RedblackDirective } from './directives/redblack.directive';
+
+
 
 const routes:Routes=[
   {
     path: 'home',
     component: HomeComponent
-
+ 
   },
   {
     path: 'calendar',
-    component: CalendarComponent
+    component: CalendarComponent,
+    canLoad:[AuthGuard],
+    canActivate:[AuthGuard]
 
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path: 'teacher',
+    component:  TeacherComponent
 
   },
   {
@@ -41,6 +66,19 @@ const routes:Routes=[
     path: 'dragDrop',
     component: DragDropComponent
 
+  },{
+    path: 'charts',
+    component: ChartsComponent
+
+  },
+  {
+    path: 'login',component: LoginComponent,
+    children:    [
+      { path: 'teacher', component: TeacherComponent },
+    { path: 'account/:name/:id', component: AccountComponent,children:[{path: 'delete', component: DeleteComponent}] },
+    { path: 'notifications', component: NotificationsComponent }
+    
+  ]
   }
   ,
   {
@@ -48,6 +86,13 @@ const routes:Routes=[
     component: TreeViewComponent
 
   },
+  {
+    path: 'signup',
+    component: SignUpComponent
+
+  }
+  ,
+  
   
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -63,15 +108,28 @@ const routes:Routes=[
     ContactComponent,
     CalendarComponent,
     DragDropComponent,
-    TreeViewComponent
+    ChartsComponent,
+    TreeViewComponent,
+    LoginComponent,
+    AccountComponent,
+    NotificationsComponent,
+    DeleteComponent,
+    SignUpComponent,
+    TeacherComponent,
+    StudentComponent,
+    ParentComponent,
+    ChildComponent,
+    RedblackDirective
+    
+   
   ],
   imports: [
     BrowserModule,
     ScheduleModule,RecurrenceEditorModule,
-    DragDropModule,BrowserAnimationsModule,
+    DragDropModule,BrowserAnimationsModule,RoutesRoutingModule,FormsModule,
     RouterModule.forRoot(routes),MatTreeModule,MatIconModule,MatButtonModule
   ],
-  providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
+  providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
