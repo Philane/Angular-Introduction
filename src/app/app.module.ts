@@ -32,7 +32,7 @@ import { ChildComponent } from './child/child.component';
 import { RedblackDirective } from './directives/redblack.directive';
 import { GridComponent } from './grids/grid/grid.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { HierarchyComponent } from './grids/hierarchy/hierarchy.component';
+
 
 
 
@@ -102,12 +102,7 @@ const routes:Routes=[
     component: GridComponent
 
   }
-  ,
-  {
-    path: 'hierarchy',
-    component: HierarchyComponent
 
-  }
   ,
   
   
@@ -137,9 +132,7 @@ const routes:Routes=[
     ParentComponent,
     ChildComponent,
     RedblackDirective,
-    GridComponent,
-    HierarchyComponent
-    
+    GridComponent
    
   ],
   imports: [

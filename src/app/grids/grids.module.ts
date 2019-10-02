@@ -5,15 +5,15 @@ import { GridComponent } from './grid/grid.component';
 
 
 import { AgGridModule } from 'ag-grid-angular';
-import { HierarchyComponent } from './hierarchy/hierarchy.component';
+
 
 @NgModule({
-  declarations: [GridComponent, HierarchyComponent],
+  declarations: [GridComponent],
   imports: [
     CommonModule,
     
     AgGridModule.withComponents([])
   ],
-  exports:[GridComponent,AgGridModule,HierarchyComponent]
+  exports:[GridComponent,AgGridModule]
 })
 export class GridsModule { }
